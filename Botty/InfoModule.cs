@@ -74,7 +74,7 @@ public class SampleModule : ModuleBase<SocketCommandContext>
             state = 1;
             rand = rnd.Next(1, 100);
 
-            await Context.Channel.SendMessageAsync("Game in session! Type !Guess number to beat the game!");
+            await Context.Channel.SendMessageAsync("Game in session! Type !Guess number to beat thef game!");
         }
 
 
