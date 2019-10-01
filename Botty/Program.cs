@@ -16,7 +16,7 @@ namespace Botty
         public static void Main(string[] args)
                     => new Program().MainAsync().GetAwaiter().GetResult();
 
-        const string _token = "NjI2MzYyODk1MjE4OTAwOTk0.XYs_-Q.ejGAtGTEUxgLxNB2wKFT0ze49Qw";
+        const string _token = "NjI2MzYyODk1MjE4OTAwOTk0.XZEFSA.bq3U8PEWc7a16lzFbB-SgI39vls";
 
         private CommandHandler _commandHandler;
 
@@ -27,12 +27,11 @@ namespace Botty
             _client.MessageReceived += MessageReceivedAsync;
 
 
-            var token = "NjI2MzYyODk1MjE4OTAwOTk0.XYs_-Q.ejGAtGTEUxgLxNB2wKFT0ze49Qw";
 
             _commandHandler = new CommandHandler(_client, new CommandService());
 
 
-            await _client.LoginAsync(TokenType.Bot, token);
+            await _client.LoginAsync(TokenType.Bot, _token);
             await _client.StartAsync();
 
             await Task.Delay(-1);

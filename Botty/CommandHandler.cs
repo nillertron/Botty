@@ -35,7 +35,7 @@ namespace Botty
             int argPos = 0;
 
             //Find ud af om beskeden er en kommando ud fra prefix + reagere ikke på bot beskeder
-            if (!(message.HasCharPrefix('!', ref argPos) || message.HasMentionPrefix(_client.CurrentUser, ref argPos)) || message.Author.IsBot) return;
+            if (!(message.HasCharPrefix('!', ref argPos) || message.HasCharPrefix('.', ref argPos) || message.HasMentionPrefix(_client.CurrentUser, ref argPos)) || message.Author.IsBot) return;
 
             var context = new SocketCommandContext(_client, message);
 
@@ -47,6 +47,7 @@ namespace Botty
   
 
         }
+
 
 
 
