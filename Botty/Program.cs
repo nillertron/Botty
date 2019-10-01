@@ -16,7 +16,7 @@ namespace Botty
         public static void Main(string[] args)
                     => new Program().MainAsync().GetAwaiter().GetResult();
 
-        const string _token = "NjI2MzYyODk1MjE4OTAwOTk0.XZEFSA.bq3U8PEWc7a16lzFbB-SgI39vls";
+        const string _token = "Indsæt token";
 
         private CommandHandler _commandHandler;
 
