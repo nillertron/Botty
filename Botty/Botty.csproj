@@ -237,6 +237,8 @@
     </Compile>
     <Compile Include="Games\GuessGame.cs" />
     <Compile Include="InfoModule.cs" />
+    <Compile Include="Poll\DbConnect.cs" />
+    <Compile Include="Poll\Poll.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomSvar.cs" />
