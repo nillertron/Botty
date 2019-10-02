@@ -16,13 +16,24 @@ namespace Botty.DBCommands
         [Summary("Service to obtain data")]
         public async Task commands() {
             var DBContext = new Entities();
+            try
+            {
+                var Command = DBContext.Commands.Where(C => C.id == 1).FirstOrDefault();
+                var embed = new EmbedBuilder();
+                embed.Title = Command.CommandName;
+                embed.Description = Command.CommandDesc;
+                embed.Color = Color.Green;
+            }
+            catch
+            {
+                var embed = new EmbedBuilder();
+                embed.Title = "Error";
+                embed.Description = "Db connection failed";
+                embed.Color = Color.Red;
+            }
+            
 
-            var Command = DBContext.Commands.Where(C => C.id == 1).FirstOrDefault();
-
-            var embed = new EmbedBuilder();
-            embed.Title = Command.CommandName;
-            embed.Description = Command.CommandDesc;
-            embed.Color = Color.Green;
+            
 
             await Context.Channel.SendMessageAsync(embed: embed.Build());
         }
