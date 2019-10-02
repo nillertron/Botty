@@ -4,6 +4,7 @@ using Discord;
 using Discord.WebSocket;
 using System.Threading.Tasks;
 using System.ComponentModel.Design;
+using Botty.Games;
 
 
 namespace Botty
@@ -33,11 +34,6 @@ namespace Botty
 
             await _client.LoginAsync(TokenType.Bot, _token);
             await _client.StartAsync();
-
-            await Task.Delay(-1);
-
-
-
         }
 
         private Task Log(LogMessage msg)

@@ -10,7 +10,8 @@ namespace Botty
 {
     public class RandomSvar : ModuleBase <SocketCommandContext>
     {
-
+        
+        // Leg ikke andet ^^
         [Command("Hello")]
         [Summary("Svare")]
 
