@@ -5,13 +5,13 @@ using Discord.WebSocket;
 using System.Threading.Tasks;
 using System.ComponentModel.Design;
 using Botty.Games;
-
+using Botty.DBCommands;
 
 namespace Botty
 {
     class Program
     {
-        const string _token = "Indsæt token";
+        const string _token = "NjI4ODU1MzEyNzE5NTQ0MzIw.XZSp6Q.W2CrRPms2CFo7CfQE6Git76OSA0";
         private DiscordSocketClient _client;
 
 

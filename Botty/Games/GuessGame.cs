@@ -5,14 +5,14 @@ using Discord.Commands;
 using Discord;
 using System.Threading.Tasks;
 using Discord.WebSocket;
+using Botty.DB;
+using System.Linq;
 
 namespace Botty.Games
 {
     public class NGame : ModuleBase<SocketCommandContext>
     {
         public Random rand1 = Random.GetRandom;
-
-       
 
         [Command("Guess")]
         [Summary("Ngame")]
@@ -84,11 +84,9 @@ namespace Botty.Games
 
 
         }
+
+        
     }
-
-
-
-
 
     public class Random
     {
