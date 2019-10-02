@@ -10,7 +10,7 @@ namespace Botty.Games
 {
     public class NGame : ModuleBase<SocketCommandContext>
     {
-        public RandomN rand1 = RandomN.GetRandom;
+        public Random rand1 = Random.GetRandom;
 
        
 
@@ -20,32 +20,32 @@ namespace Botty.Games
         public async Task gameAsync(int num)
         {
 
-            if (!RandomN.On)
+            if (!Random.On)
             {
                 await Context.Channel.SendMessageAsync("No game currently running, start number game with !startNgame");
             }
-            else if (RandomN.On)
+            else if (Random.On)
             {
-                if (num == RandomN.rand)
+                if (num == Random.rand)
                 {
-                    RandomN.gCounter++;
+                    Random.gCounter++;
 
-                    await Context.Channel.SendMessageAsync("Number was correct! " + num + "Took you " + RandomN.gCounter + " Tries");
-                    RandomN.On = false;
+                    await Context.Channel.SendMessageAsync("Number was correct! " + num + "Took you " + Random.gCounter + " Tries");
+                    Random.On = false;
 
                 }
-                else if (num > RandomN.rand)
+                else if (num > Random.rand)
                 {
-                    RandomN.gCounter++;
+                    Random.gCounter++;
 
-                    await Context.Channel.SendMessageAsync(num + " Was too high ! guess again with !Guess (number) \n" + RandomN.gCounter + " Tries");
+                    await Context.Channel.SendMessageAsync(num + " Was too high ! guess again with !Guess (number) \n" + Random.gCounter + " Tries");
 
                 }
-                else if (num < RandomN.rand)
+                else if (num < Random.rand)
                 {
-                    RandomN.gCounter++;
+                    Random.gCounter++;
 
-                    await Context.Channel.SendMessageAsync(num + " Was too low, try again with !Guess (number)\n" + RandomN.gCounter + " Tries");
+                    await Context.Channel.SendMessageAsync(num + " Was too low, try again with !Guess (number)\n" + Random.gCounter + " Tries");
                 }
             }
 
@@ -59,11 +59,11 @@ namespace Botty.Games
 
             await Task.Run( () =>
             {
-                rand1 = RandomN.GetRandom;
-                Random rnd = new Random();
-                RandomN.rand = rnd.Next(1, 100);
-                RandomN.gCounter = 0;
-                RandomN.On = true;
+                rand1 = Random.GetRandom;
+                System.Random rnd = new System.Random();
+                Random.rand = rnd.Next(1, 100);
+                Random.gCounter = 0;
+                Random.On = true;
 
             });
             await Context.Channel.SendMessageAsync("Game is now in session! Type !Guess number to beat the game!");
@@ -77,7 +77,7 @@ namespace Botty.Games
             await Task.Run(async () =>
 
             {
-                RandomN.On = false;
+                Random.On = false;
                 await Context.Channel.SendMessageAsync("Game is off!");
             }
             );
@@ -90,7 +90,7 @@ namespace Botty.Games
 
 
 
-    public class RandomN
+    public class Random
     {
         public static int rand { get; set; }
         public static int gCounter { get; set; }
@@ -98,8 +98,8 @@ namespace Botty.Games
 
 
 
-        public static RandomN GetRandom { get; } = new RandomN();
-        private RandomN()
+        public static Random GetRandom { get; } = new Random();
+        private Random()
         {
 
         }
