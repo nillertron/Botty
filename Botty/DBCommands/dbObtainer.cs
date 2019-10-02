@@ -31,11 +31,6 @@ namespace Botty.DBCommands
                 embed.Description = "Db connection failed";
                 embed.Color = Color.Red;
             }
-            
-
-            
-
-            await Context.Channel.SendMessageAsync(embed: embed.Build());
         }
     }
 }
