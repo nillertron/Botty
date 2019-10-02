@@ -11,13 +11,14 @@ namespace Botty
 {
     class Program
     {
+        const string _token = "Indsæt token";
         private DiscordSocketClient _client;
 
 
         public static void Main(string[] args)
                     => new Program().MainAsync().GetAwaiter().GetResult();
 
-        const string _token = "Indsæt token";
+        
 
         private CommandHandler _commandHandler;
 
@@ -34,6 +35,8 @@ namespace Botty
 
             await _client.LoginAsync(TokenType.Bot, _token);
             await _client.StartAsync();
+
+            await Task.Delay(-1);
         }
 
         private Task Log(LogMessage msg)
