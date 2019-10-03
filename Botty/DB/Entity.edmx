@@ -20,8 +20,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CommandName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CommandDesc" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CommandDesc" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="Permissions">
           <Key>
@@ -77,7 +78,8 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CommandName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CommandDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CommandDesc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Commands" EntityType="Self.Command" />
@@ -142,6 +144,7 @@
           <EntitySetMapping Name="Commands">
             <EntityTypeMapping TypeName="BottyModel.Command">
               <MappingFragment StoreEntitySet="Commands">
+                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="CommandName" ColumnName="CommandName" />
                 <ScalarProperty Name="CommandDesc" ColumnName="CommandDesc" />

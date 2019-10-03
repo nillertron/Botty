@@ -15,10 +15,12 @@ namespace Botty.DBCommands
         [Command("help")]
         [Summary("Service to obtain data")]
         public async Task commands() {
-            var DBContext = new Entities();
+
             var embed = new EmbedBuilder();
+
+            var DBContext = new Entities();
             
-            var CommandList = DBContext.Commands.Where(C => C.id != 0).ToList();
+            var CommandList = DBContext.Commands.Where(C => C.id != 0).OrderBy(C => C.type).ToList();
             if (CommandList == null || CommandList[0] == null)
             {
                 embed.Title = "Error";
