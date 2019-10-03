@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Linq;
 using Botty.DB;
 using Discord;
-using Botty.Exceptions;
 using System.Collections.Generic;
 
 namespace Botty.DBCommands
