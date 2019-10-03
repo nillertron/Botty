@@ -17,6 +17,7 @@ namespace Botty
         [Command("StartPoll")]
         public async Task StartPoll()
         {
+            //tjekker om der er aktiv poll i db
             TjekActive();
 
             if (newPoll.newPollStarted || newPoll.PollActive)
@@ -25,6 +26,7 @@ namespace Botty
             }
             else
             {
+                //sætter newpoll til startet så vi kan komme videre i med at oprette en poll
                 newPoll.newPollStarted = true;
                 await Context.Channel.SendMessageAsync("Poll started! Type !PollQ QUESTION TO ASK IN POLL");
             }
@@ -37,13 +39,12 @@ namespace Botty
         [Command("PollQ")]
         public async Task OpretPollQ([Remainder]string pollQ)
         {
-            await ReplyAsync(pollQ);
-
+            //Tjek om der er startet ny poll
             if (!newPoll.newPollStarted)
             {
                 await Context.Channel.SendMessageAsync("No new poll is started");
             }
-            else
+            else//Hvis ny poll er startet indsætter vi spørgsmålet i databasen og stter poll add answers til true / newPollStarted til false
             {
                 DbConnect db = new DbConnect();
                 await db.indsaetPollQ(pollQ);

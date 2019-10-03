@@ -6,6 +6,7 @@ using Discord;
 using System.Threading.Tasks;
 using Discord.WebSocket;
 using System.Data.SqlClient;
+using Botty.DBCommands;
 
 
 
@@ -15,7 +16,11 @@ namespace Botty
     {
         const string connectionString = "Data Source=TOKEN;Initial Catalog=Botty;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         #region Poll db
-
+        public async Task test()
+        {
+            dbObtainer db = new dbObtainer();
+            
+        }
         //Indsæt poll question
         public async Task indsaetPollQ(string PollQ)
         {
