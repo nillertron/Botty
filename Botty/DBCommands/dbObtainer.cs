@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Linq;
 using Botty.DB;
 using Discord;
-using System.Collections.Generic;
 
 namespace Botty.DBCommands
 {
@@ -20,10 +19,10 @@ namespace Botty.DBCommands
             var embed = new EmbedBuilder();
             
             var CommandList = DBContext.Commands.Where(C => C.id != 0).ToList();
-            if (CommandList == null)
+            if (CommandList == null || CommandList[0] == null)
             {
                 embed.Title = "Error";
-                embed.Description = "Connection to database lost";
+                embed.Description = "Connection to database lost or table was empty";
                 embed.Color = Color.Red;
                 await Context.Channel.SendMessageAsync(embed: embed.Build());
                 return;

@@ -6,6 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="9b55f8621c654ab98d3b8083d5fa74f1" Name="Diagram1">
         <EntityTypeShape EntityType="BottyModel.Command" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BottyModel.Answer" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BottyModel.Permission" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BottyModel.permissionType" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BottyModel.Question" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BottyModel.Vote" Width="1.5" PointX="5.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

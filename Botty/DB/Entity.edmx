@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BottyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BottyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Anum" />
+          </Key>
+          <Property Name="Anum" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="A" Type="varchar(max)" Nullable="false" />
+          <Property Name="Number" Type="int" />
+          <Property Name="Votes" Type="int" Nullable="false" />
+          <Property Name="Qnum" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Commands">
           <Key>
             <PropertyRef Name="id" />
@@ -13,11 +23,51 @@
           <Property Name="CommandName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CommandDesc" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Permissions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="discordID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="permissionType" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permissionTypes">
+          <Key>
+            <PropertyRef Name="permissionName" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="permissionName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="override" Type="bit" Nullable="false" />
+          <Property Name="deletion" Type="bit" Nullable="false" />
+          <Property Name="dbAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Qnum" />
+          </Key>
+          <Property Name="Qnum" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserVoted" Type="nvarchar" MaxLength="50" />
+          <Property Name="Q" Type="varchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="char" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vote">
+          <Key>
+            <PropertyRef Name="Voteid" />
+          </Key>
+          <Property Name="Voteid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Anum" Type="int" Nullable="false" />
+          <Property Name="Qnum" Type="int" Nullable="false" />
+          <Property Name="User" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="BottyModelStoreContainer">
+          <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Commands" EntityType="Self.Commands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permissions" EntityType="Self.Permissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="permissionTypes" EntityType="Self.permissionTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vote" EntityType="Self.Vote" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BottyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -31,7 +81,58 @@
         </EntityType>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Commands" EntityType="Self.Command" />
+          <EntitySet Name="Answers" EntityType="BottyModel.Answer" />
+          <EntitySet Name="Permissions" EntityType="BottyModel.Permission" />
+          <EntitySet Name="permissionTypes" EntityType="BottyModel.permissionType" />
+          <EntitySet Name="Questions" EntityType="BottyModel.Question" />
+          <EntitySet Name="Votes" EntityType="BottyModel.Vote" />
         </EntityContainer>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Anum" />
+          </Key>
+          <Property Name="Anum" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="A" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Number" Type="Int32" />
+          <Property Name="Votes" Type="Int32" Nullable="false" />
+          <Property Name="Qnum" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="discordID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="permissionType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="permissionType">
+          <Key>
+            <PropertyRef Name="permissionName" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="permissionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="override" Type="Boolean" Nullable="false" />
+          <Property Name="deletion" Type="Boolean" Nullable="false" />
+          <Property Name="dbAdmin" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Qnum" />
+          </Key>
+          <Property Name="Qnum" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserVoted" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Q" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Vote">
+          <Key>
+            <PropertyRef Name="Voteid" />
+          </Key>
+          <Property Name="Voteid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Anum" Type="Int32" Nullable="false" />
+          <Property Name="Qnum" Type="Int32" Nullable="false" />
+          <Property Name="User" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -44,6 +145,57 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="CommandName" ColumnName="CommandName" />
                 <ScalarProperty Name="CommandDesc" ColumnName="CommandDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="BottyModel.Answer">
+              <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="Qnum" ColumnName="Qnum" />
+                <ScalarProperty Name="Votes" ColumnName="Votes" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="A" ColumnName="A" />
+                <ScalarProperty Name="Anum" ColumnName="Anum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permissions">
+            <EntityTypeMapping TypeName="BottyModel.Permission">
+              <MappingFragment StoreEntitySet="Permissions">
+                <ScalarProperty Name="permissionType" ColumnName="permissionType" />
+                <ScalarProperty Name="discordID" ColumnName="discordID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permissionTypes">
+            <EntityTypeMapping TypeName="BottyModel.permissionType">
+              <MappingFragment StoreEntitySet="permissionTypes">
+                <ScalarProperty Name="dbAdmin" ColumnName="dbAdmin" />
+                <ScalarProperty Name="deletion" ColumnName="deletion" />
+                <ScalarProperty Name="override" ColumnName="override" />
+                <ScalarProperty Name="permissionName" ColumnName="permissionName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="BottyModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Q" ColumnName="Q" />
+                <ScalarProperty Name="UserVoted" ColumnName="UserVoted" />
+                <ScalarProperty Name="Qnum" ColumnName="Qnum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Votes">
+            <EntityTypeMapping TypeName="BottyModel.Vote">
+              <MappingFragment StoreEntitySet="Vote">
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Qnum" ColumnName="Qnum" />
+                <ScalarProperty Name="Anum" ColumnName="Anum" />
+                <ScalarProperty Name="Voteid" ColumnName="Voteid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

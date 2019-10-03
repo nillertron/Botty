@@ -217,6 +217,9 @@
   <ItemGroup>
     <Compile Include="CommandHandler.cs" />
     <Compile Include="DBCommands\dbObtainer.cs" />
+    <Compile Include="DB\Answer.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\Command.cs">
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
@@ -235,7 +238,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Entity.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DB\Permission.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\permissionType.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Question.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Vote.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Games\GuessGame.cs" />
+    <Compile Include="Hierarchy\HierachyMain.cs" />
     <Compile Include="InfoModule.cs" />
     <Compile Include="Poll\DbConnect.cs" />
     <Compile Include="Poll\Poll.cs" />

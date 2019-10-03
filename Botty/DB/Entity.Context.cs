@@ -26,5 +26,10 @@ namespace Botty.DB
         }
     
         public virtual DbSet<Command> Commands { get; set; }
+        public virtual DbSet<Answer> Answers { get; set; }
+        public virtual DbSet<Permission> Permissions { get; set; }
+        public virtual DbSet<permissionType> permissionTypes { get; set; }
+        public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<Vote> Votes { get; set; }
     }
 }
