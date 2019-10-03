@@ -37,9 +37,7 @@ namespace Botty
                             command.ExecuteNonQuery();
 
                         }
-
                         conn.Close();
-
                     }
                 });
             }
