@@ -235,6 +235,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Entity.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Exceptions\dbException.cs" />
     <Compile Include="Games\GuessGame.cs" />
     <Compile Include="InfoModule.cs" />
     <Compile Include="Program.cs" />

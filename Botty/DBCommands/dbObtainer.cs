@@ -6,31 +6,50 @@ using System.Threading.Tasks;
 using System.Linq;
 using Botty.DB;
 using Discord;
+using Botty.Exceptions;
+using System.Collections.Generic;
 
 namespace Botty.DBCommands
 {
     public class dbObtainer : ModuleBase<SocketCommandContext>
     {
 
-        [Command("obtain")]
+        [Command("help")]
         [Summary("Service to obtain data")]
         public async Task commands() {
             var DBContext = new Entities();
+            var embed = new EmbedBuilder();
             try
             {
-                var Command = DBContext.Commands.Where(C => C.id == 1).FirstOrDefault();
-                var embed = new EmbedBuilder();
-                embed.Title = Command.CommandName;
-                embed.Description = Command.CommandDesc;
+                var CommandList = DBContext.Commands.Where(C => C.id != 0).ToList();
+                if (CommandList == null)
+                {
+                    throw new dbException();
+                }
+                embed.Title = "Command list";
+                int i = 0;
+                foreach(var item in CommandList)
+                {
+                    embed.AddField(CommandList[i].CommandName, CommandList[i].CommandDesc);
+                    i++;
+                }
                 embed.Color = Color.Green;
             }
-            catch
+            catch (dbException e)
             {
-                var embed = new EmbedBuilder();
                 embed.Title = "Error";
-                embed.Description = "Db connection failed";
+                embed.Description = e.ToString();
                 embed.Color = Color.Red;
             }
+
+            await Context.Channel.SendMessageAsync(embed: embed.Build());
         }
+    }
+
+    public class DBCommands
+    {
+        public int id { get; set; }
+        public string CommandName { get; set; }
+        public string CommandDesc { get; set; }
     }
 }
