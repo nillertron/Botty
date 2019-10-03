@@ -11,7 +11,7 @@ namespace Botty
 {
     class Program
     {
-        const string _token = "NjI4ODU1MzEyNzE5NTQ0MzIw.XZWzQQ.ePgsesSVbLuw_ZZrJ56ZCe7dZhI";
+        const string _token = "NjI2MzYyODk1MjE4OTAwOTk0.XZXCvA.MLObe6lKfINQpG7EuSYesk5H0iM";
         private DiscordSocketClient _client;
 
 
