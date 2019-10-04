@@ -7,7 +7,7 @@ using Discord.WebSocket;
 using System.Threading.Tasks;
 using System.Reflection;
 
-namespace Botty
+namespace Botty.Services
 {
     class CommandHandler
     {
@@ -23,9 +23,6 @@ namespace Botty
             _commands.AddModulesAsync(assembly: Assembly.GetEntryAssembly(), services: null).GetAwaiter().GetResult();
         }
 
-
-        
-
         private async Task HandleCommandAsync(SocketMessage messeageParam)
         {
             var message = messeageParam as SocketUserMessage;
@@ -38,23 +35,14 @@ namespace Botty
             if (!(message.HasCharPrefix('!', ref argPos) || message.HasCharPrefix('.', ref argPos) || message.HasMentionPrefix(_client.CurrentUser, ref argPos)) || message.Author.IsBot) return;
 
             var context = new SocketCommandContext(_client, message);
-
+            
             await _commands.ExecuteAsync(
                 context: context,
                 argPos: argPos,
                 services: null);
-            //tjek at det ikke er en system besked
-  
-
         }
-
-
-
-
-
-
-
     }
+
     public class MyCommandService : CommandService
     {
 

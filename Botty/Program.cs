@@ -7,12 +7,13 @@ using System.ComponentModel.Design;
 using Botty.Games;
 using Botty.DBCommands;
 using Botty.Hierarchy;
+using Botty.Services;
 
 namespace Botty
 {
     class Program
     {
-        const string _token = "";
+        const string _token = "NjI4ODU1MzEyNzE5NTQ0MzIw.XZbx2g.88X0n0rWVFiXMmunFh0GxZ95m34";
         private DiscordSocketClient _client;
 
 
