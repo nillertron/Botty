@@ -32,8 +32,14 @@ namespace Botty.DBCommands
             embed.Title = "Command list";
 
             int i = 0;
+            String lastType = string.Empty;
             foreach(var item in CommandList)
             {
+                if(lastType != item.type)
+                {
+                    embed.AddField("---------------------" + item.type + "---------------------", "-");
+                    lastType = item.type;
+                }
                 embed.AddField(CommandList[i].CommandName, CommandList[i].CommandDesc);
                 i++;
             }

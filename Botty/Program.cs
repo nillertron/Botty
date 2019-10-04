@@ -12,14 +12,12 @@ namespace Botty
 {
     class Program
     {
-        const string _token = "NjI4ODU1MzEyNzE5NTQ0MzIw.XZXiXg._a6q6bNGF1Fl16ZKtlT5Y4akBls";
+        const string _token = "";
         private DiscordSocketClient _client;
 
 
         public static void Main(string[] args)
                     => new Program().MainAsync().GetAwaiter().GetResult();
-
-        
 
         private CommandHandler _commandHandler;
 
@@ -29,10 +27,7 @@ namespace Botty
             _client.Log += Log;
             _client.MessageReceived += MessageReceivedAsync;
 
-
-
             _commandHandler = new CommandHandler(_client, new CommandService());
-
 
             await _client.LoginAsync(TokenType.Bot, _token);
             await _client.StartAsync();
